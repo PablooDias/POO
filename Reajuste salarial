@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Salario {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Informe o seu salário atual: R$ ");
+        double salario = input.nextDouble();
+
+        double percentual = 0;
+        double inflacao = 3.8;
+
+        if (salario <= 280) {
+            percentual = 20;
+        } else if (salario <= 700) {
+            percentual = 15;
+        } else if (salario <= 1500) {
+            percentual = 10;
+        } else {
+            percentual = 5;
+        }
+
+        double aumento = salario * (percentual / 100);
+        double novoSalario = salario + aumento;
+
+        double aumentoReal = novoSalario / (1 + (inflacao / 100)) - salario;
+
+        System.out.println("===== Resultado =====");
+        System.out.printf("1. Salário antes do reajuste: R$ %.2f%n", salario);
+        System.out.printf("2. Percentual de aumento aplicado: %.0f%%%n", percentual);
+        System.out.printf("3. Valor do aumento: R$ %.2f%n", aumento);
+        System.out.printf("4. Novo salário, após o aumento: R$ %.2f%n", novoSalario);
+        System.out.printf("5. Aumento real (descontada a inflação): R$ %.2f%n", aumentoReal);
+
+        input.close();
+    }
+}
